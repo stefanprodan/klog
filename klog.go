@@ -1,7 +1,6 @@
 package klog
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"strconv"
@@ -70,10 +69,6 @@ func (l *Level) Set(value string) error {
 	defer logging.mu.Unlock()
 	logging.verbosity.set(Level(v))
 	return nil
-}
-
-func init() {
-	flag.Var(&logging.verbosity, "v", "log level for V logs")
 }
 
 // Verbose is a shim
@@ -262,4 +257,3 @@ func Exitf(format string, args ...interface{}) {
 	skipLogger().Errorf(format, args...)
 	os.Exit(1)
 }
-
